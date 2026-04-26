@@ -25,8 +25,8 @@ fp-info-cache
 *.ses
 
 # Exported BOM files
-*.xml
-*.csv
+# *.xml
+# *.csv
 
 # osx
 .DS_Store
