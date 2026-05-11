@@ -9317,7 +9317,7 @@
 				)
 			)
 		)
-		(property "Value" "TS3A4751RUCR"
+		(property "Value" "TS3A4741DCNR"
 			(at 180.34 78.74 0)
 			(effects
 				(font
@@ -9354,7 +9354,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "TS3A4751RUCR"
+		(property "MPN" "TS3A4741DCNR"
 			(at 149.86 83.82 0)
 			(effects
 				(font
