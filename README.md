@@ -2,161 +2,192 @@
 
 ## 概要
 
-本基板は、Leafony USB Type-C シリアル変換機能を提供する **USB-C to UART リーフ** である。USB接続時は FT234XD による USB-UART 変換と 3.3V 電源供給を Leafony Bus 経由で他リーフへ提供し、USB未接続時は消費電流が最小限になるよう設計されている。
+Leafony AZ01C は、Leafony Bus 向けの USB-C to UART リーフである。USB 接続時は FT234XD による USB-UART 変換と、USB VBUS から生成した 3.3V 電源を Leafony Bus へ供給する。
 
-## 　主な用途
+USB 未接続時に他リーフ側から 3.3V が供給される構成でも、UART 信号線と 3.3V 電源ラインのバックフィードを抑えることを設計方針とする。信号線は TS3A4741 で物理的に切断し、電源ラインは TPS6282533 出力と Leafony Bus 3.3V の間に MAX40200AUK+T ideal diode を入れて逆流を遮断する。
 
-- Leafony リーフへのMCU書き込み・デバッグ用 USB シリアル変換
-- Leafony Bus 経由の 3.3V 電源供給（USB から最大 500mA）
+## 主な用途
+
+- Leafony リーフへの MCU 書き込み
+- Leafony リーフの UART デバッグ
+- USB から Leafony Bus への 3.3V 電源供給
 
 ## 仕様
 
 ### 電気的仕様
 
 | 項目 | Min | Typ | Max | 単位 | 備考 |
-|---|---|---|---|---|---|
-| USB VBUS入力電圧 | 4.5 | 5.0 | 5.5 | V | USB 2.0規格準拠 |
-| Buck出力電圧 (P3V3_BUCK) | 3.27 | 3.30 | 3.33 | V | TPS6282533 ±1% |
-| Leafony Bus 3.3V出力 | - | 3.26 | - | V | MAX40200通過後。500mA時の代表電圧降下43mVを含む |
-| 3.3V出力電流 (最大) | - | - | 500 | mA | TPS6282533は2A品、MAX40200は1A品。本設計で500mA指定 |
-| UART通信ボーレート | 300 | - | 3,000,000 | baud | FT234XD仕様 |
-| USB未接続時消費電流 | - | ~0 | - | µA | VBUS/外部3.3Vとも無印加時 |
-| MAX40200逆方向リーク | - | 0.07 | 1.5 | µA | Leafony Bus +3.3V → P3V3_BUCK方向 |
-| USB接続時アイドル消費 | - | 12 | - | mA | FT234XD 8mA + Buck Iq 4µA + MAX40200 Iq 7µA + α |
-| UART I/O論理電圧 | - | 3.3 | - | V | VCCIOを3.3V railに固定 |
+|---|---:|---:|---:|---|---|
+| USB VBUS 入力電圧 | 4.5 | 5.0 | 5.5 | V | USB-C UFP/Sink として使用 |
+| Buck 出力電圧 `P3V3_BUCK` | 3.27 | 3.30 | 3.33 | V | TPS6282533 固定 3.3V、精度 ±1% |
+| Leafony Bus 3.3V 出力 | - | 3.26 | - | V | MAX40200 通過後。500mA 時は約 43mV 低下 |
+| Leafony Bus 3.3V 出力電流 | - | - | 500 | mA | TPS6282533 は 2A 品、MAX40200 は 1A 品。本設計では 500mA 上限 |
+| MAX40200 逆方向リーク | - | 0.07 | 1.5 | µA | Leafony Bus +3.3V から `P3V3_BUCK` 方向 |
+| UART 通信速度 | 300 | - | 3,000,000 | baud | FT234XD 仕様 |
+| UART I/O 論理電圧 | - | 3.3 | - | V | FT234XD VCCIO を Leafony Bus 3.3V rail に接続 |
+| USB 接続時アイドル消費 | - | 12 | - | mA | FT234XD、Buck、MAX40200、LED 周辺を含む概算 |
 | 動作温度範囲 | -40 | 25 | +85 | ℃ | 構成部品の最小共通範囲 |
 
 ### 機械的仕様
 
 | 項目 | 仕様 |
 |---|---|
-| 外形寸法 | Leafony  20×20 mm |
-| 基板厚 | 0.8 mm (推奨) |
+| 外形寸法 | Leafony 20mm x 20mm |
+| 基板厚 | 0.8mm 推奨 |
 | 層数 | 4層 |
 | 実装 | 両面実装 |
-| USBコネクタ | Hirose CX90M-16P |
+| USB コネクタ | Hirose CX90M-16P |
 | 外部接続 | Leafony Bus 29ピン |
 
-### USB仕様
+### USB 仕様
 
 | 項目 | 仕様 |
 |---|---|
-| USB規格 | USB 2.0 Full Speed (12 Mbps) |
-| コネクタ | USB Type-C (UFP: Upstream Facing Port) |
-| CC抵抗 | 5.1kΩ × 2 (CC1, CC2にそれぞれ独立) |
-| 電源ロール | Sink Only (Power Source機能なし) |
+| USB 規格 | USB 2.0 Full Speed (12Mbps) |
+| コネクタ | USB Type-C |
+| Type-C ロール | UFP / Sink Only |
+| CC 抵抗 | CC1, CC2 それぞれ 5.1kΩ で GND へプルダウン |
 | USB PD | 非対応 |
-| ドライバ | FTDI VCP / D2XX (Windows, macOS, Linux) |
-
----
+| ドライバ | FTDI VCP / D2XX |
 
 ## 回路設計
 
 ### 電源アーキテクチャ
 
-本設計の中核となる低消費電力アーキテクチャ：
-
 ```
-[USB VBUS 5V] ──┬──► FB1 ──► FT234XD.VCC
-                │                 (USB接続時のみ動作)
-                │                       │
-                │                       └► FT234XD.3V3OUT (Pin3)
-                │                          ─► TS3A4741.IN1/IN2
-                │                            (FT234XD稼働時のみ Switch ON)
-                │
-                └──► TPS6282533.VIN
-                        EN = VIN直結 (USB接続で自動ON)
-                        DCS-Control自動PFM/PWM切替
-                        出力: P3V3_BUCK 3.3V / 500mA
-                              │
-                              └──► MAX40200AUK+T ideal diode
-                                      VDD/IN = P3V3_BUCK
-                                      EN = VDD/IN
-                                      OUT = +3.3V rail
-                                            │
-                                            ├──► FT234XD.VCCIO
-                                            ├──► TS3A4741.V+
-                                            ├──► LED1プルアップ
-                                            └──► CN1 F1/B1 (Leafony Bus 3.3V)
+USB VBUS 5V
+  |
+  +-- FB1 ---------------------> FT234XD.VCC
+  |                                |
+  |                                +--> FT234XD.3V3OUT
+  |                                      |
+  |                                      +--> TS3A4741.IN1/IN2
+  |
+  +----------------------------> TPS6282533.VIN
+                                   |
+                                   +-- EN = VIN
+                                   |
+                                   +-- SW -- L1 --> P3V3_BUCK
+                                                   |
+                                                   +--> MAX40200AUK+T
+                                                        VDD = P3V3_BUCK
+                                                        EN  = VDD
+                                                        OUT = +3.3V rail
+                                                              |
+                                                              +--> FT234XD.VCCIO
+                                                              +--> TS3A4741.V+
+                                                              +--> LED1 pull-up
+                                                              +--> Leafony Bus 3.3V (CN1 F1/B1)
 ```
 
-**USB未接続時の動作:**
+`P3V3_BUCK` は TPS6282533 と MAX40200 の間のローカル電源レール、`+3.3V rail` は MAX40200 後段の Leafony Bus 側電源レールとする。
 
-- VBUS = 0V → TPS6282533 EN = 0V → Buck完全OFF
-- FT234XD VCC = 0V → FT234XD完全OFF → 3V3OUT = 0V
-- 他リーフからLeafony Bus +3.3Vが印加されても、MAX40200が+3.3V rail → P3V3_BUCK → TPS6282533.SW/VIN方向の逆流を遮断
-- TS3A4741 IN1/IN2 = 0V → 全chOFF → TX/RX物理切断
+MAX40200 を入れることで、USB 未接続時に他リーフから Leafony Bus 3.3V が供給されても、`+3.3V rail -> P3V3_BUCK -> TPS6282533.SW/VIN -> VBUS` 方向の逆流を遮断する。MAX40200 の電圧降下により、Leafony Bus 側の実効電圧は TPS6282533 出力より低くなる。
+
+### 動作状態
+
+| 状態 | 電源 | UART 信号線 | 備考 |
+|---|---|---|---|
+| USB 接続、外部 3.3V なし | TPS6282533 から Leafony Bus へ 3.3V 供給 | TS3A4741 ON | 通常の USB-UART 動作 |
+| USB 未接続、外部 3.3V なし | VBUS=0V、`P3V3_BUCK`=0V、Leafony Bus 3.3V=0V | TS3A4741 OFF | 基板側は実質停止 |
+| USB 未接続、他リーフから 3.3V 供給 | Leafony Bus 3.3V は外部から印加。MAX40200 が Buck/VBUS 方向の逆流を遮断 | TS3A4741 OFF | FT234XD.3V3OUT=0V のためスイッチ制御は OFF |
+| USB 接続、他リーフも 3.3V 供給 | 電源競合に注意 | TS3A4741 ON | 複数電源の同時接続を許容する場合はシステム側で電源 ORing 方針を確認 |
+
+USB 未接続で他リーフから 3.3V が供給される場合、MAX40200 後段の `+3.3V rail` 配下である FT234XD.VCCIO、TS3A4741.V+、LED1 pull-up には電圧がかかる。一方で FT234XD.VCC は VBUS 由来のため 0V であり、FT234XD.3V3OUT も 0V となる。UART の TX/RX は TS3A4741 により切断される。
 
 ### バックフィード対策
 
-MCU側（他リーフ）が3.3V電源で動作し続けているとき、以下2種類の「バックフィード」が発生する可能性がある。
+バックフィード経路は大きく 2 つに分ける。
 
-1. TX信号がFT234XDのRXDピン内部ESDダイオードを通ってVCCに逆流する信号ライン経由のバックフィード
-2. Leafony Bus +3.3VがTPS6282533のSW/L1側からVIN(VBUS)へ逆流する電源ライン経由のバックフィード
+| 経路 | リスク | 対策 |
+|---|---|---|
+| UART TX/RX 信号線 | 他リーフ MCU の TX/RX が FT234XD の I/O 保護素子を通じて FT234XD 側を半端に給電する | TS3A4741 を TX/RX に直列挿入し、USB 未接続時は OFF |
+| 3.3V 電源ライン | 他リーフの 3.3V が TPS6282533 の SW/L1 側から VIN/VBUS へ逆流する | MAX40200AUK+T を `P3V3_BUCK` と Leafony Bus 3.3V の間に直列挿入 |
 
-信号ライン経由のバックフィードを防ぐため、TS3A4741(2ch SPSTアナログスイッチ)をTX/RXラインに直列挿入している。アナログスイッチ(U1)の制御IN1/IN2をFT234XDの3V3OUT(内部LDO出力, Pin3)に接続することで、USB接続時(FT234XD稼働時)のみ自動的にスイッチON、USB未接続時は自動OFFとなる。専用制御信号は不要。
+TS3A4741 の IN1/IN2 は FT234XD.3V3OUT に接続する。USB 接続時は FT234XD が動作して 3V3OUT が High になり、TX/RX が接続される。USB 未接続時は 3V3OUT が 0V になり、TX/RX が物理的に切断される。
 
-電源ライン経由のバックフィードを防ぐため、TPS6282533の3.3V出力(P3V3_BUCK)とLeafony Bus +3.3V railの間にMAX40200AUK+Tを直列挿入する。MAX40200のVDD/INをP3V3_BUCK、OUTをLeafony Bus +3.3V rail、ENをVDD/INに接続する。これによりUSB接続時はTPS6282533からLeafony Busへ給電し、USB未接続時に他リーフから+3.3Vが印加されてもTPS6282533およびVBUS側へ逆流しない。
+MAX40200 は VDD を `P3V3_BUCK`、OUT を Leafony Bus 3.3V、EN を VDD に接続する。USB 接続時は TPS6282533 から Leafony Bus へ給電し、USB 未接続時は Leafony Bus 3.3V から Buck/VBUS 側への逆流を遮断する。
 
-MAX40200の代表電圧降下は500mA時43mV、1A時85mVである。本設計ではLeafony Busへの供給電流を500mA以下に制限し、3.3V railの実効電圧はTPS6282533出力からMAX40200の電圧降下を差し引いた値として扱う。
-
-### USB Type-C UFP構成
-
-USB-Cポートをデバイス側(UFP)として動作させるため、以下のとおり構成する：
+### USB Type-C UFP 構成
 
 | 信号 | 処理 |
 |---|---|
-| CC1, CC2 | 各々独立に5.1kΩでGNDへプルダウン (Rd) |
-| VBUS | 4ピン(A4, A9, B4, B9)すべてをまとめて5V入力に接続 |
-| GND | 4ピン(A1, A12, B1, B12)すべてをGNDプレーンに接続 |
-| D+, D- | A/B両面同士を基板上で接続し1本化 |
-| SBU1, SBU2 | 未接続 (NC) |
+| CC1, CC2 | 各々 5.1kΩ で GND へプルダウン |
+| VBUS | A4, A9, B4, B9 をまとめて 5V 入力へ接続 |
+| GND | A1, A12, B1, B12 を GND プレーンへ接続 |
+| D+, D- | A面/B面の同名信号を基板上で接続し、FT234XD へ配線 |
+| SBU1, SBU2 | NC |
 
-USB PD非対応のため、CC抵抗のみで識別完了。
+USB PD には対応しない。CC 抵抗のみで USB Type-C の Sink/UFP として認識させる。
 
-### ESD保護
+### ESD 保護
 
-D+/D-ラインにUSBLC6-2P6 (SOT-666) を配置。USB-Cコネクタ近傍に最短スタブで接続。VBUSにはフェライトビーズのみ（コスト優先、必要に応じてTVSダイオード追加余地あり）。
+D+/D- ラインには USBLC6-2P6 を配置する。USB-C コネクタ近傍に置き、D+/D- へのスタブを短くする。VBUS は FB1 を通して基板内へ引き込む。必要に応じて、VBUS 用 TVS ダイオードの追加余地を検討する。
 
-### 通信インジケータLED
+### 通信インジケータ LED
 
-FT234XDのCBUS0ピンをFT_PROGで `TX&RXLED#` モードに設定し、LED1を駆動する。TX/RXいずれかで点灯する兼用インジケータ。
+FT234XD の CBUS0 を FT_PROG で `TX&RXLED#` に設定し、LED1 を TX/RX 共用インジケータとして使用する。
 
-### Leafony Bus ピンアサイン
+## Leafony Bus ピンアサイン
 
 | ピン名 | F面 / B面 | 信号 | 用途 |
 |---|---|---|---|
-| 3.3V | F1 / B1 | +3.3V (MAX40200通過後) | 他リーフへ給電 (最大 500mA)、USB未接続時の逆流遮断 |
-| VBUS | F3 / B3 | VBUS (5V) | 他リーフが必要なら使用可 |
-| D0 | F18 / B18 | UART TX (FT234XD → 他リーフ MCU の RX) | TS3A4741 Ch1 経由 |
-| D1 | F20 / B20 | UART RX (他リーフ MCU の TX → FT234XD) | TS3A4741 Ch2 経由 |
+| 3.3V | F1 / B1 | +3.3V rail | MAX40200 通過後の 3.3V 電源。USB から他リーフへ最大 500mA 供給 |
+| VBUS | F3 / B3 | VBUS 5V | USB VBUS。必要な他リーフで参照可能 |
+| D0 | F18 / B18 | UART TX | FT234XD TXD から他リーフ MCU RX へ。TS3A4741 Ch1 経由 |
+| D1 | F20 / B20 | UART RX | 他リーフ MCU TX から FT234XD RXD へ。TS3A4741 Ch2 経由 |
 | GND | F27 / B27 | GND | 共通グラウンド |
 
----
+## 主要部品
+
+| Ref | 型番 | 役割 |
+|---|---|---|
+| U1 | TS3A4741DCNR | UART TX/RX 切断用 2ch SPST アナログスイッチ |
+| U2 | USBLC6-2P6 | USB D+/D- ESD 保護 |
+| U3 | FT234XD | USB-UART ブリッジ |
+| U4 | TPS6282533DMQR | 5V から 3.3V を生成する Buck コンバータ |
+| U5 | MAX40200AUK+T | 3.3V 電源ライン逆流防止用 ideal diode |
+| J1 | CX90M-16P | USB Type-C レセプタクル |
+| L1 | 0.47uH | TPS6282533 用インダクタ |
+| FB1 | 600Ω @ 100MHz | VBUS 入力ノイズ抑制 |
 
 ## ソフトウェア
 
 ### ドライバ
 
-FTDI公式のVCP(Virtual COM Port)またはD2XXドライバを使用する。
+FTDI 公式の VCP または D2XX ドライバを使用する。
 
 | OS | ドライバ | 備考 |
 |---|---|---|
-| Windows 10/11 | 標準ドライバ自動インストール | FTDI社サイトから最新版入手可 |
-| macOS | 標準Apple FTDIドライバ | macOS 10.9以降 |
-| Linux | カーネル内蔵 ftdi_sio | ほぼすべてのディストリビューションで自動認識 |
+| Windows 10/11 | 標準ドライバ自動インストール | 必要に応じて FTDI 公式ドライバを使用 |
+| macOS | 標準 Apple FTDI ドライバ | macOS 10.9 以降 |
+| Linux | `ftdi_sio` | 多くのディストリビューションで自動認識 |
 
 ### 初期設定 (FT_PROG)
 
-量産前に各基板のFT234XD内蔵EEPROMに以下を書き込む：
+量産前に FT234XD 内蔵 MTP へ以下を設定する。
 
 | パラメータ | 設定値 | 備考 |
 |---|---|---|
-| CBUS0 Function | `TX&RXLED#` | LED1通信インジケータ用 |
-| Manufacturer Name | (任意) | 例: "mitdir" |
-| Product Description | (任意) | 例: "USB-UART Bridge" |
+| CBUS0 Function | `TX&RXLED#` | LED1 通信インジケータ用 |
+| Manufacturer Name | 任意 | 例: `mitdir` |
+| Product Description | 任意 | 例: `Leafony USB-UART Bridge` |
 | Serial Number | ユニーク値 | 複数台接続時の識別用 |
-| USB Vendor ID | 0x0403 (FTDIデフォルト) | 変更不要 |
-| USB Product ID | 0x6015 (FT-Xデフォルト) | 変更不要 |
+| USB Vendor ID | `0x0403` | FTDI デフォルト |
+| USB Product ID | `0x6015` | FT-X デフォルト |
 
-書き込み方法: FT_PROGツール (FTDI公式、Windows) をUSB経由で使用。
+## 設計反映メモ
+
+この README は、MAX40200AUK+T を追加した電源構成を前提とする。KiCad 回路図、PCB、BOM を更新する場合は、少なくとも以下を反映する。
+
+- `U5: MAX40200AUK+T` を追加する
+- TPS6282533 の出力側を `P3V3_BUCK` とし、Leafony Bus 側 `+3.3V rail` と分離する
+- MAX40200 の VDD を `P3V3_BUCK`、OUT を `+3.3V rail`、EN を VDD に接続する
+- Leafony Bus 3.3V、FT234XD.VCCIO、TS3A4741.V+、LED1 pull-up は MAX40200 後段の `+3.3V rail` に接続する
+- BOM に MAX40200AUK+T と対応フットプリントを追加する
+
+あわせて以下を実機またはデータシートで確認する。
+
+- USB 未接続かつ他リーフから 3.3V が供給される状態で、FT234XD.VCC=0V、FT234XD.VCCIO=3.3V となることを許容できるか
+- USB 接続中に他リーフ側の 3.3V 電源も同時に有効になるシステム構成を許容するか
+- MAX40200 の電圧降下込みで、Leafony Bus 側 3.3V rail の最小電圧が接続先リーフの要求を満たすか
