@@ -64,7 +64,7 @@
           "min_clearance": 0.0,
           "min_island_area": 10.0,
           "min_thickness": 0.25,
-          "pad_connection": 1,
+          "pad_connection": 2,
           "remove_islands": 0,
           "thermal_relief_gap": 0.5,
           "thermal_relief_spoke_width": 0.5
@@ -87,7 +87,7 @@
           ""
         ],
         [
-          "copper_edge_clearance|43000000|39800000|0cb5febb-ef1a-48dc-ad8c-b600172fdd2a|0a69a5c3-c639-4bb1-8d0d-4f9e33c1baa7",
+          "copper_edge_clearance|43000000|39280000|a024fd63-f6c3-4fdb-9d9c-d536c6d1641c|0a69a5c3-c639-4bb1-8d0d-4f9e33c1baa7",
           ""
         ],
         [
@@ -276,6 +276,10 @@
         {
           "diameter": 0.33,
           "drill": 0.2
+        },
+        {
+          "diameter": 0.4,
+          "drill": 0.3
         },
         {
           "diameter": 0.5,

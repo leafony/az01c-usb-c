@@ -11,6 +11,193 @@
 		(company "mitdir Inc.")
 	)
 	(lib_symbols
+		(symbol "Analog_Switch:MAX40200AUK"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -6.35 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "MAX40200AUK"
+				(at 7.62 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+				(at 0 12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://datasheets.maximintegrated.com/en/ds/MAX40200.pdf"
+				(at 0 12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Ideal Diode, Ultra-Low Voltage Drop, 1.5-5.5V, 1A, SOT-23-5"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "current switch"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "MAX40200AUK_1_1"
+				(rectangle
+					(start -7.62 -5.08)
+					(end 7.62 5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin power_in line
+					(at -10.16 2.54 0)
+					(length 2.54)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -2.54 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 7.62 -2.54 180)
+					(length 2.54)
+					(hide yes)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C_Small"
 			(pin_numbers
 				(hide yes)
@@ -4343,6 +4530,12 @@
 		(uuid "1a6229fb-bdbc-4588-8753-ebebdbb2467c")
 	)
 	(junction
+		(at 180.34 156.21)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1b1a5900-d4a3-4892-bcbf-4a10e13dba2e")
+	)
+	(junction
 		(at 110.49 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4377,12 +4570,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "3e5101a8-1385-4f40-8166-de6f602fc242")
-	)
-	(junction
-		(at 144.78 156.21)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "419bb23c-d15d-4b0a-a1cf-81a73a4158fe")
 	)
 	(junction
 		(at 60.96 156.21)
@@ -4509,6 +4696,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d4b25d88-1dc8-42d5-8f8a-a59b73f088b7")
+	)
+	(junction
+		(at 146.05 156.21)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e7fd7a33-4884-4f6a-b9a7-c84125c9e87c")
+	)
+	(junction
+		(at 151.13 156.21)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e8846dd5-57a8-41fc-92ed-0d3a7b7871cb")
 	)
 	(junction
 		(at 100.33 76.2)
@@ -4693,6 +4892,16 @@
 			(type default)
 		)
 		(uuid "128cfb34-809d-4606-bf29-7ab91f99e879")
+	)
+	(wire
+		(pts
+			(xy 152.4 161.29) (xy 151.13 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12ac08ce-f444-432c-ab06-24d84f2fb006")
 	)
 	(wire
 		(pts
@@ -5046,6 +5255,16 @@
 	)
 	(wire
 		(pts
+			(xy 146.05 156.21) (xy 146.05 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "463a43e7-2799-4c96-b7ea-c95d0cc82467")
+	)
+	(wire
+		(pts
 			(xy 266.7 105.41) (xy 259.08 105.41)
 		)
 		(stroke
@@ -5096,6 +5315,16 @@
 	)
 	(wire
 		(pts
+			(xy 180.34 153.67) (xy 180.34 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4be59951-c456-422c-8cd2-4c4afdb40c20")
+	)
+	(wire
+		(pts
 			(xy 266.7 146.05) (xy 238.76 146.05)
 		)
 		(stroke
@@ -5133,16 +5362,6 @@
 			(type default)
 		)
 		(uuid "50b12c28-81d7-4248-9d0b-5aa92f50b562")
-	)
-	(wire
-		(pts
-			(xy 144.78 152.4) (xy 144.78 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50bbd460-b284-44db-a5d9-76c860be64a2")
 	)
 	(wire
 		(pts
@@ -5396,6 +5615,16 @@
 	)
 	(wire
 		(pts
+			(xy 151.13 156.21) (xy 152.4 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7532d5a0-9f33-47eb-b6bf-24150994869f")
+	)
+	(wire
+		(pts
 			(xy 261.62 100.33) (xy 261.62 24.13)
 		)
 		(stroke
@@ -5576,6 +5805,16 @@
 	)
 	(wire
 		(pts
+			(xy 180.34 156.21) (xy 180.34 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8add020f-6987-4664-915a-6a76f462865c")
+	)
+	(wire
+		(pts
 			(xy 137.16 177.8) (xy 137.16 156.21)
 		)
 		(stroke
@@ -5663,6 +5902,16 @@
 			(type default)
 		)
 		(uuid "9552370b-b322-481f-a247-fd7815526381")
+	)
+	(wire
+		(pts
+			(xy 146.05 156.21) (xy 151.13 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "97c33f53-ac53-46f3-80af-32c6a126396d")
 	)
 	(wire
 		(pts
@@ -5766,7 +6015,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 156.21) (xy 144.78 156.21)
+			(xy 137.16 156.21) (xy 146.05 156.21)
 		)
 		(stroke
 			(width 0)
@@ -5883,6 +6132,16 @@
 			(type default)
 		)
 		(uuid "b09870ad-8985-4a1c-a7b1-3acb9a1b9282")
+	)
+	(wire
+		(pts
+			(xy 146.05 167.64) (xy 146.05 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0e484ff-c8a9-40e1-bd74-54498efb9de7")
 	)
 	(wire
 		(pts
@@ -6033,6 +6292,16 @@
 			(type default)
 		)
 		(uuid "bd414d71-771f-4dd5-ab9c-2e92105a0c11")
+	)
+	(wire
+		(pts
+			(xy 172.72 156.21) (xy 180.34 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd9b252b-c38c-4860-8638-5e74bd626f54")
 	)
 	(wire
 		(pts
@@ -6283,6 +6552,16 @@
 			(type default)
 		)
 		(uuid "d6236eb7-cd45-45cd-9ee7-1f5df7cdf7f2")
+	)
+	(wire
+		(pts
+			(xy 151.13 161.29) (xy 151.13 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9a4ad1d-3f72-4394-bf7a-455a73458819")
 	)
 	(wire
 		(pts
@@ -6723,6 +7002,109 @@
 			(justify left bottom)
 		)
 		(uuid "f139484c-68e6-4aa8-ba4e-23fc2b479408")
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 146.05 165.1 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "036a4eed-4b70-4aca-a685-9a96a6d72ce4")
+		(property "Reference" "C10"
+			(at 143.256 167.132 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "0.1uF(K)/50V/X5R"
+			(at 149.352 176.022 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 146.05 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://yageogroup.com/content/datasheet/asset/file/UPY-GPHC_X5R_4V-TO-50V"
+			(at 146.05 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "CAP CER 0.1UF 50V X5R 0402"
+			(at 146.05 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CC0402KRX5R9BB104"
+			(at 146.05 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MANUFACTURER" "YAGEO"
+			(at 146.05 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "6e525ffb-96f3-4f26-a4b1-6b146d2e23aa")
+		)
+		(pin "1"
+			(uuid "78733276-ff3f-4c01-bfba-0d2ff14b7bbf")
+		)
+		(instances
+			(project "leafony-az01c"
+				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
+					(reference "C10")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Device:C_Small")
@@ -7971,7 +8353,7 @@
 				)
 			)
 		)
-		(property "MPN" "FT234XD"
+		(property "MPN" "FT234XD-T"
 			(at 125.73 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -9309,83 +9691,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 144.78 152.4 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "68c37763-912f-494d-b918-225d12abda71")
-		(property "Reference" "#PWR024"
-			(at 144.78 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 144.526 149.098 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 144.78 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 144.78 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 144.78 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "800aa7ed-a422-4e52-8b41-ce393831cc2f")
-		)
-		(instances
-			(project "leafony-az01c"
-				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
-					(reference "#PWR024")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 142.24 80.01 0)
 		(mirror y)
@@ -9932,84 +10237,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 144.78 156.21 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "7f51994d-a08b-428a-8f4b-8e51bba3e982")
-		(property "Reference" "#FLG02"
-			(at 144.78 158.115 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 144.78 161.29 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 144.78 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 144.78 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 144.78 156.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3851f40d-e438-403d-b400-08275db362ab")
-		)
-		(instances
-			(project "leafony-az01c"
-				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
-					(reference "#FLG02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Leafony:TS3A4741DCNR")
 		(at 149.86 83.82 0)
 		(unit 1)
@@ -10240,6 +10467,83 @@
 			(project "leafony-az01c"
 				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
 					(reference "D1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 180.34 153.67 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "98d4de4d-81d5-4ccb-ac7f-ed42ce2623ba")
+		(property "Reference" "#PWR024"
+			(at 180.34 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 180.086 150.368 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 180.34 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 180.34 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 180.34 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7cc745c8-c9d4-40de-8dc4-3fe1ab4e9591")
+		)
+		(instances
+			(project "leafony-az01c"
+				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -10891,6 +11195,86 @@
 		)
 	)
 	(symbol
+		(lib_name "GND_5")
+		(lib_id "power:GND")
+		(at 162.56 166.37 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c879ff8b-79f5-408e-aecd-d3743fd4e9cb")
+		(property "Reference" "#PWR031"
+			(at 162.56 172.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 162.56 171.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 162.56 166.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 162.56 166.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 162.56 166.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5a839941-40eb-47fa-9034-4a3822c02632")
+		)
+		(instances
+			(project "leafony-az01c"
+				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
+					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 110.49 116.84 180)
 		(unit 1)
@@ -10989,6 +11373,117 @@
 			(project "leafony-az01c"
 				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
 					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Analog_Switch:MAX40200AUK")
+		(at 162.56 158.75 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d43e6020-3078-42d6-865a-2b0cb1919d05")
+		(property "Reference" "U5"
+			(at 162.56 148.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MAX40200AUK+T"
+			(at 162.56 151.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+			(at 162.56 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://datasheets.maximintegrated.com/en/ds/MAX40200.pdf"
+			(at 162.56 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Ideal Diode, Ultra-Low Voltage Drop, 1.5-5.5V, 1A, SOT-23-5"
+			(at 162.56 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MANUFACTURER" "Analog Devices Inc./Maxim Integrated"
+			(at 162.56 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MAX40200AUK+T"
+			(at 162.56 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "5"
+			(uuid "543ab9b7-9eac-4ea3-a396-fc4c589c7771")
+		)
+		(pin "2"
+			(uuid "1402303f-0aec-4157-aa69-8a8bfe2d3ed7")
+		)
+		(pin "3"
+			(uuid "8bd16c2c-6c4b-4876-9bee-9c18018396f3")
+		)
+		(pin "4"
+			(uuid "de441553-7c7e-47e8-b855-82147f4155c6")
+		)
+		(pin "1"
+			(uuid "7bf38ac1-e41f-4e61-a069-7dc1ff54d4cb")
+		)
+		(instances
+			(project "leafony-az01c"
+				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
+					(reference "U5")
 					(unit 1)
 				)
 			)
@@ -11454,7 +11949,7 @@
 				)
 			)
 		)
-		(property "MPN" "DFE201610E-R47M"
+		(property "MPN" "DFE201610E-R47M=P2"
 			(at 111.76 156.21 90)
 			(hide yes)
 			(show_name no)
@@ -11731,6 +12226,86 @@
 		)
 	)
 	(symbol
+		(lib_name "GND_5")
+		(lib_id "power:GND")
+		(at 146.05 170.18 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f83aa5b9-8c76-4b49-90dd-a70e2ee55716")
+		(property "Reference" "#PWR032"
+			(at 146.05 176.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 146.05 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 146.05 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 146.05 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 146.05 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "15194bc1-95dc-4445-a77c-505bd7080de8")
+		)
+		(instances
+			(project "leafony-az01c"
+				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
+					(reference "#PWR032")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 129.54 161.29 0)
 		(unit 1)
@@ -11850,6 +12425,84 @@
 			(project "leafony-az01c"
 				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
 					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 180.34 157.48 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "faa90c12-4777-4c17-9428-2d8185e045f2")
+		(property "Reference" "#FLG02"
+			(at 180.34 159.385 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 180.34 162.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 180.34 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 180.34 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 180.34 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "217b6305-0813-492d-9773-fe94a01115ac")
+		)
+		(instances
+			(project "leafony-az01c"
+				(path "/e2743b78-cc59-458c-8fb0-4238f348a49f"
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)
